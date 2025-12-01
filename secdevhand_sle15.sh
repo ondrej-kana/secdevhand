@@ -51,6 +51,13 @@ fi
 # Function: check /etc/cron.hourly
 7343_scan_cron_hourly() {
     local dir="/etc/cron.hourly"
+    # Ensure directory exists
+    if [ ! -d "$dir" ]; then
+        echo "$(date '+%F %T') - ERROR: $dir does not exist" >> "$GLOBLOGFILE"
+        echo "$(date '+%F %T') - ERROR: $dir does not exist" 
+        return 1
+    fi
+    
     touch "$ENVDIR/7343_cron.hourly_$DATE.bck" 
     local BCKLOGFILE="$ENVDIR/7343_cron.hourly_$DATE.bck"
     if ! touch "$BCKLOGFILE" 2>/dev/null; then
@@ -74,13 +81,6 @@ fi
 # Function: fix /etc/cron.hourly ownership and permissions
 7343_fix_cron_hourly() {
     local dir="/etc/cron.hourly"
-
-    # Ensure directory exists
-    if [ ! -d "$dir" ]; then
-        echo "$(date '+%F %T') - ERROR: $dir does not exist" >> "$GLOBLOGFILE"
-        echo "$(date '+%F %T') - ERROR: $dir does not exist" 
-        return 1
-    fi
 
     # Backup current state
     7343_scan_cron_hourly 
@@ -142,6 +142,13 @@ fi
 # Function: check /etc/cron.daily
 7341_scan_cron_daily() {
     local dir="/etc/cron.daily"
+    # Ensure directory exists
+    if [ ! -d "$dir" ]; then
+        echo "$(date '+%F %T') - ERROR: $dir does not exist" >> "$GLOBLOGFILE"
+        echo "$(date '+%F %T') - ERROR: $dir does not exist"
+        return 1
+    fi
+    
     touch "$ENVDIR/7341_cron.daily_$DATE.bck"
     local BCKLOGFILE="$ENVDIR/7341_cron.daily_$DATE.bck"
     if ! touch "$BCKLOGFILE" 2>/dev/null; then
@@ -165,13 +172,6 @@ fi
 # Function: fix /etc/cron.daily ownership and permissions
 7341_fix_cron_daily() {
     local dir="/etc/cron.daily"
-
-    # Ensure directory exists
-    if [ ! -d "$dir" ]; then
-        echo "$(date '+%F %T') - ERROR: $dir does not exist" >> "$GLOBLOGFILE"
-        echo "$(date '+%F %T') - ERROR: $dir does not exist"
-        return 1
-    fi
 
     # Backup current state
     7341_scan_cron_daily
@@ -229,6 +229,13 @@ fi
 # Function: check /etc/cron.weekly
 7345_scan_cron_weekly() {
     local dir="/etc/cron.weekly"
+    # Ensure directory exists
+    if [ ! -d "$dir" ]; then
+        echo "$(date '+%F %T') - ERROR: $dir does not exist" >> "$GLOBLOGFILE"
+        echo "$(date '+%F %T') - ERROR: $dir does not exist"
+        return 1
+    fi
+    
     touch "$ENVDIR/7345_cron.weekly_$DATE.bck"
     local BCKLOGFILE="$ENVDIR/7345_cron.weekly_$DATE.bck"
     if ! touch "$BCKLOGFILE" 2>/dev/null; then
@@ -252,13 +259,6 @@ fi
 # Function: fix /etc/cron.weekly ownership and permissions
 7345_fix_cron_weekly() {
     local dir="/etc/cron.weekly"
-
-    # Ensure directory exists
-    if [ ! -d "$dir" ]; then
-        echo "$(date '+%F %T') - ERROR: $dir does not exist" >> "$GLOBLOGFILE"
-        echo "$(date '+%F %T') - ERROR: $dir does not exist"
-        return 1
-    fi
 
     # Backup current state
     7345_scan_cron_weekly
@@ -315,6 +315,13 @@ fi
 # Function: check /etc/cron.monthly
 7347_scan_cron_monthly() {
     local dir="/etc/cron.monthly"
+    # Ensure directory exists
+    if [ ! -d "$dir" ]; then
+        echo "$(date '+%F %T') - ERROR: $dir does not exist" >> "$GLOBLOGFILE"
+        echo "$(date '+%F %T') - ERROR: $dir does not exist"
+        return 1
+    fi
+    
     touch "$ENVDIR/7347_cron.monthly_$DATE.bck"
     local BCKLOGFILE="$ENVDIR/7347_cron.monthly_$DATE.bck"
     if ! touch "$BCKLOGFILE" 2>/dev/null; then
@@ -338,13 +345,6 @@ fi
 # Function: fix /etc/cron.monthly ownership and permissions
 7347_fix_cron_monthly() {
     local dir="/etc/cron.monthly"
-
-    # Ensure directory exists
-    if [ ! -d "$dir" ]; then
-        echo "$(date '+%F %T') - ERROR: $dir does not exist" >> "$GLOBLOGFILE"
-        echo "$(date '+%F %T') - ERROR: $dir does not exist"
-        return 1
-    fi
 
     # Backup current state
     7347_scan_cron_monthly
@@ -402,6 +402,13 @@ fi
 # Function: check /etc/cron.d
 7339_scan_cron_d() {
     local dir="/etc/cron.d"
+    # Ensure directory exists
+    if [ ! -d "$dir" ]; then
+        echo "$(date '+%F %T') - ERROR: $dir does not exist" >> "$GLOBLOGFILE"
+        echo "$(date '+%F %T') - ERROR: $dir does not exist"
+        return 1
+    fi
+    
     touch "$ENVDIR/7339_cron.d_$DATE.bck"
     local BCKLOGFILE="$ENVDIR/7339_cron.d_$DATE.bck"
     if ! touch "$BCKLOGFILE" 2>/dev/null; then
@@ -425,13 +432,6 @@ fi
 # Function: fix /etc/cron.d ownership and permissions
 7339_fix_cron_d() {
     local dir="/etc/cron.d"
-
-    # Ensure directory exists
-    if [ ! -d "$dir" ]; then
-        echo "$(date '+%F %T') - ERROR: $dir does not exist" >> "$GLOBLOGFILE"
-        echo "$(date '+%F %T') - ERROR: $dir does not exist"
-        return 1
-    fi
 
     # Backup current state
     7339_scan_cron_d
@@ -489,6 +489,13 @@ fi
 # Function: check /etc/at.deny
 7356_scan_at_deny() {
     local dir="/etc/at.deny"
+    # Ensure directory exists
+    if [ ! -f "$dir" ]; then
+        echo "$(date '+%F %T') - ERROR: $dir does not exist" >> "$GLOBLOGFILE"
+        echo "$(date '+%F %T') - ERROR: $dir does not exist"
+        return 1
+    fi
+    
     touch "$ENVDIR/7356_at.deny_$DATE.bck"
     local BCKLOGFILE="$ENVDIR/7356_at.deny_$DATE.bck"
     if ! touch "$BCKLOGFILE" 2>/dev/null; then
@@ -512,13 +519,6 @@ fi
 # Function: fix /etc/at.deny ownership and permissions
 7356_fix_at_deny() {
     local dir="/etc/at.deny"
-
-    # Ensure directory exists
-    if [ ! -f "$dir" ]; then
-        echo "$(date '+%F %T') - ERROR: $dir does not exist" >> "$GLOBLOGFILE"
-        echo "$(date '+%F %T') - ERROR: $dir does not exist"
-        return 1
-    fi
 
     # Backup current state
     7356_scan_at_deny

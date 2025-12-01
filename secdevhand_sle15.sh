@@ -53,7 +53,6 @@ fi
     local dir="/etc/cron.hourly"
     # Ensure directory exists
     if [ ! -d "$dir" ]; then
-        echo "$(date '+%F %T') - ERROR: $dir does not exist" >> "$GLOBLOGFILE"
         echo "$(date '+%F %T') - ERROR: $dir does not exist" 
         return 1
     fi
@@ -61,7 +60,6 @@ fi
     touch "$ENVDIR/7343_cron.hourly_$DATE.bck" 
     local BCKLOGFILE="$ENVDIR/7343_cron.hourly_$DATE.bck"
     if ! touch "$BCKLOGFILE" 2>/dev/null; then
-        echo "ERROR: Cannot write backup file: $BCKLOGFILE" >> "$GLOBLOGFILE"
         echo "ERROR: Cannot write backup file: $BCKLOGFILE"
         return 1
     fi 
@@ -89,7 +87,7 @@ fi
     #chown root:root "$dir"
     chmod 700 "$dir"
 
-    echo "$(date '+%F %T') - Fixed $dir (owner:root, group:root, permissions:700)" >> "$GLOBLOGFILE"
+    echo "$(date '+%F %T') - Fixed $dir (owner:root, group:root, permissions:700)"
 }
 
 # Function: restore /etc/cron.hourly from backup
@@ -99,7 +97,6 @@ fi
 
     # Check backup exists
     if [ ! -f "$backup_file" ]; then
-        echo "ERROR: Backup file not found: $backup_file" >> "$GLOBLOGFILE"
         echo "ERROR: Backup file not found: $backup_file" 
         return 1
     fi
@@ -115,7 +112,6 @@ fi
 
     # Validate values
     if [[ -z "$owner" || -z "$group" || -z "$perms" ]]; then
-        echo "ERROR: Invalid backup file format: $backup_file" >> "$GLOBLOGFILE"
         echo "ERROR: Invalid backup file format: $backup_file" 
         return 1
     fi
@@ -123,12 +119,11 @@ fi
     # Apply restored values
     #chown "$owner:$group" "$dir"
     if ! chmod "$perms" "$dir"; then
-        echo "ERROR: Failed to apply permissions '$perms' to $dir" >> "$GLOBLOGFILE"
         echo "ERROR: Failed to apply permissions '$perms' to $dir" 
         return 1
     fi
 
-    echo "$(date '+%F %T') - Restored $dir from backup $backup_file (owner:$owner, group:$group, permissions:$perms)" >> "$GLOBLOGFILE"
+    echo "$(date '+%F %T') - Restored $dir from backup $backup_file (owner:$owner, group:$group, permissions:$perms)"
 }
 
 
@@ -147,7 +142,6 @@ fi
     local dir="/etc/cron.daily"
     # Ensure directory exists
     if [ ! -d "$dir" ]; then
-        echo "$(date '+%F %T') - ERROR: $dir does not exist" >> "$GLOBLOGFILE"
         echo "$(date '+%F %T') - ERROR: $dir does not exist"
         return 1
     fi
@@ -155,7 +149,6 @@ fi
     touch "$ENVDIR/7341_cron.daily_$DATE.bck"
     local BCKLOGFILE="$ENVDIR/7341_cron.daily_$DATE.bck"
     if ! touch "$BCKLOGFILE" 2>/dev/null; then
-        echo "ERROR: Cannot write backup file: $BCKLOGFILE" >> "$GLOBLOGFILE"
         echo "ERROR: Cannot write backup file: $BCKLOGFILE"
         return 1
     fi
@@ -183,7 +176,7 @@ fi
     #chown root:root "$dir"
     chmod 700 "$dir"
 
-    echo "$(date '+%F %T') - Fixed $dir (owner:root, group:root, permissions:700)" >> "$GLOBLOGFILE"
+    echo "$(date '+%F %T') - Fixed $dir (owner:root, group:root, permissions:700)"
 }
 
 # Function: restore /etc/cron.daily from backup
@@ -193,7 +186,6 @@ fi
 
     # Check backup exists
     if [ ! -f "$backup_file" ]; then
-        echo "ERROR: Backup file not found: $backup_file" >> "$GLOBLOGFILE"
         echo "ERROR: Backup file not found: $backup_file"
         return 1
     fi
@@ -209,7 +201,6 @@ fi
 
     # Validate values
     if [[ -z "$owner" || -z "$group" || -z "$perms" ]]; then
-        echo "ERROR: Invalid backup file format: $backup_file" >> "$GLOBLOGFILE"
         echo "ERROR: Invalid backup file format: $backup_file"
         return 1
     fi
@@ -217,12 +208,11 @@ fi
     # Apply restored values
     #chown "$owner:$group" "$dir"
     if ! chmod "$perms" "$dir"; then
-        echo "ERROR: Failed to apply permissions '$perms' to $dir" >> "$GLOBLOGFILE"
         echo "ERROR: Failed to apply permissions '$perms' to $dir"
         return 1
     fi
 
-    echo "$(date '+%F %T') - Restored $dir from backup $backup_file (owner:$owner, group:$group, permissions:$perms)" >> "$GLOBLOGFILE"
+    echo "$(date '+%F %T') - Restored $dir from backup $backup_file (owner:$owner, group:$group, permissions:$perms)"
 }
 
 
@@ -237,7 +227,6 @@ fi
     local dir="/etc/cron.weekly"
     # Ensure directory exists
     if [ ! -d "$dir" ]; then
-        echo "$(date '+%F %T') - ERROR: $dir does not exist" >> "$GLOBLOGFILE"
         echo "$(date '+%F %T') - ERROR: $dir does not exist"
         return 1
     fi
@@ -245,7 +234,6 @@ fi
     touch "$ENVDIR/7345_cron.weekly_$DATE.bck"
     local BCKLOGFILE="$ENVDIR/7345_cron.weekly_$DATE.bck"
     if ! touch "$BCKLOGFILE" 2>/dev/null; then
-        echo "ERROR: Cannot write backup file: $BCKLOGFILE"  >> "$GLOBLOGFILE"
         echo "ERROR: Cannot write backup file: $BCKLOGFILE"
         return 1
     fi
@@ -273,7 +261,7 @@ fi
     #chown root:root "$dir"
     chmod 700 "$dir"
 
-    echo "$(date '+%F %T') - Fixed $dir (owner:root, group:root, permissions:700)" >> "$GLOBLOGFILE"
+    echo "$(date '+%F %T') - Fixed $dir (owner:root, group:root, permissions:700)"
 }
 
 # Function: restore /etc/cron.weekly from backup
@@ -283,7 +271,6 @@ fi
 
     # Check backup exists
     if [ ! -f "$backup_file" ]; then
-        echo "ERROR: Backup file not found: $backup_file" >> "$GLOBLOGFILE"
         echo "ERROR: Backup file not found: $backup_file"
         return 1
     fi
@@ -299,7 +286,6 @@ fi
 
     # Validate values
     if [[ -z "$owner" || -z "$group" || -z "$perms" ]]; then
-        echo "ERROR: Invalid backup file format: $backup_file" >> "$GLOBLOGFILE"
         echo "ERROR: Invalid backup file format: $backup_file"
         return 1
     fi
@@ -307,12 +293,11 @@ fi
     # Apply restored values
     #chown "$owner:$group" "$dir"
     if ! chmod "$perms" "$dir"; then
-        echo "ERROR: Failed to apply permissions '$perms' to $dir" >> "$GLOBLOGFILE"
         echo "ERROR: Failed to apply permissions '$perms' to $dir"
         return 1
     fi
 
-    echo "$(date '+%F %T') - Restored $dir from backup $backup_file (owner:$owner, group:$group, permissions:$perms)" >> "$GLOBLOGFILE"
+    echo "$(date '+%F %T') - Restored $dir from backup $backup_file (owner:$owner, group:$group, permissions:$perms)"
 }
 
 #----------------------------------------------------------------------------------------------
@@ -326,7 +311,6 @@ fi
     local dir="/etc/cron.monthly"
     # Ensure directory exists
     if [ ! -d "$dir" ]; then
-        echo "$(date '+%F %T') - ERROR: $dir does not exist" >> "$GLOBLOGFILE"
         echo "$(date '+%F %T') - ERROR: $dir does not exist"
         return 1
     fi
@@ -334,7 +318,6 @@ fi
     touch "$ENVDIR/7347_cron.monthly_$DATE.bck"
     local BCKLOGFILE="$ENVDIR/7347_cron.monthly_$DATE.bck"
     if ! touch "$BCKLOGFILE" 2>/dev/null; then
-        echo "ERROR: Cannot write backup file: $BCKLOGFILE" >> "$GLOBLOGFILE"
         echo "ERROR: Cannot write backup file: $BCKLOGFILE"
         return 1
     fi
@@ -362,7 +345,7 @@ fi
     #chown root:root "$dir"
     chmod 700 "$dir"
 
-    echo "$(date '+%F %T') - Fixed $dir (owner:root, group:root, permissions:700)" >> "$GLOBLOGFILE"
+    echo "$(date '+%F %T') - Fixed $dir (owner:root, group:root, permissions:700)"
 }
 
 # Function: restore /etc/cron.monthly from backup
@@ -372,7 +355,6 @@ fi
 
     # Check backup exists
     if [ ! -f "$backup_file" ]; then
-        echo "ERROR: Backup file not found: $backup_file" >> "$GLOBLOGFILE"
         echo "ERROR: Backup file not found: $backup_file"
         return 1
     fi
@@ -388,7 +370,6 @@ fi
 
     # Validate values
     if [[ -z "$owner" || -z "$group" || -z "$perms" ]]; then
-        echo "ERROR: Invalid backup file format: $backup_file" >> "$GLOBLOGFILE"
         echo "ERROR: Invalid backup file format: $backup_file"
         return 1
     fi
@@ -396,12 +377,11 @@ fi
     # Apply restored values
     #chown "$owner:$group" "$dir"
     if ! chmod "$perms" "$dir"; then
-        echo "ERROR: Failed to apply permissions '$perms' to $dir" >> "$GLOBLOGFILE"
         echo "ERROR: Failed to apply permissions '$perms' to $dir"
         return 1
     fi
 
-    echo "$(date '+%F %T') - Restored $dir from backup $backup_file (owner:$owner, group:$group, permissions:$perms)" >> "$GLOBLOGFILE"
+    echo "$(date '+%F %T') - Restored $dir from backup $backup_file (owner:$owner, group:$group, permissions:$perms)"
 }
 
 
@@ -416,7 +396,6 @@ fi
     local dir="/etc/cron.d"
     # Ensure directory exists
     if [ ! -d "$dir" ]; then
-        echo "$(date '+%F %T') - ERROR: $dir does not exist" >> "$GLOBLOGFILE"
         echo "$(date '+%F %T') - ERROR: $dir does not exist"
         return 1
     fi
@@ -424,7 +403,6 @@ fi
     touch "$ENVDIR/7339_cron.d_$DATE.bck"
     local BCKLOGFILE="$ENVDIR/7339_cron.d_$DATE.bck"
     if ! touch "$BCKLOGFILE" 2>/dev/null; then
-        echo "ERROR: Cannot write backup file: $BCKLOGFILE" >> "$GLOBLOGFILE"
         echo "ERROR: Cannot write backup file: $BCKLOGFILE"
         return 1
     fi
@@ -452,7 +430,7 @@ fi
     #chown root:root "$dir"
     chmod 700 "$dir"
 
-    echo "$(date '+%F %T') - Fixed $dir (owner:root, group:root, permissions:700)" >> "$GLOBLOGFILE"
+    echo "$(date '+%F %T') - Fixed $dir (owner:root, group:root, permissions:700)"
 }
 
 # Function: restore /etc/cron.d from backup
@@ -462,7 +440,6 @@ fi
 
     # Check backup exists
     if [ ! -f "$backup_file" ]; then
-        echo "ERROR: Backup file not found: $backup_file" >> "$GLOBLOGFILE"
         echo "ERROR: Backup file not found: $backup_file"
         return 1
     fi
@@ -478,7 +455,6 @@ fi
 
     # Validate values
     if [[ -z "$owner" || -z "$group" || -z "$perms" ]]; then
-        echo "ERROR: Invalid backup file format: $backup_file" >> "$GLOBLOGFILE"
         echo "ERROR: Invalid backup file format: $backup_file"
         return 1
     fi
@@ -486,45 +462,42 @@ fi
     # Apply restored values
     #chown "$owner:$group" "$dir"
     if ! chmod "$perms" "$dir"; then
-        echo "ERROR: Failed to apply permissions '$perms' to $dir" >> "$GLOBLOGFILE"
         echo "ERROR: Failed to apply permissions '$perms' to $dir"
         return 1
     fi
 
-    echo "$(date '+%F %T') - Restored $dir from backup $backup_file (owner:$owner, group:$group, permissions:$perms)" >> "$GLOBLOGFILE"
+    echo "$(date '+%F %T') - Restored $dir from backup $backup_file (owner:$owner, group:$group, permissions:$perms)"
 }
 
 
 #----------------------------------------------------------------------------------------------
 # Control ID: 7356 
-# Description: Check, fix, remediate, and restore /etc/at.deny directory
+# Description: Check, fix, remediate, and restore /etc/at.deny file 
 #----------------------------------------------------------------------------------------------
 
 
 # Function: check /etc/at.deny
 7356_scan_at_deny() {
-    local dir="/etc/at.deny"
-    # Ensure directory exists
-    if [ ! -f "$dir" ]; then
-        echo "$(date '+%F %T') - ERROR: $dir does not exist" >> "$GLOBLOGFILE"
-        echo "$(date '+%F %T') - ERROR: $dir does not exist"
+    local file="/etc/at.deny"
+    # Ensure file exists
+    if [ ! -f "$file" ]; then
+        echo "$(date '+%F %T') - ERROR: $file does not exist"
         return 1
     fi
     
     touch "$ENVDIR/7356_at.deny_$DATE.bck"
     local BCKLOGFILE="$ENVDIR/7356_at.deny_$DATE.bck"
     if ! touch "$BCKLOGFILE" 2>/dev/null; then
-        echo "ERROR: Cannot write backup file: $BCKLOGFILE" >> "$GLOBLOGFILE"
         echo "ERROR: Cannot write backup file: $BCKLOGFILE"
         return 1
     fi
 
     local owner group perms
-    owner=$(stat -c %U "$dir")
-    group=$(stat -c %G "$dir")
-    perms=$(stat -c %a "$dir")
+    owner=$(stat -c %U "$file")
+    group=$(stat -c %G "$file")
+    perms=$(stat -c %a "$file")
 
-    echo "$(date '+%F %T') - Checking $dir:" >> "$BCKLOGFILE"
+    echo "$(date '+%F %T') - Checking $file:" >> "$BCKLOGFILE"
     echo "    Owner: $owner" >> "$BCKLOGFILE"
     echo "    Group: $group" >> "$BCKLOGFILE"
     echo "    Permissions: $perms" >> "$BCKLOGFILE"
@@ -533,26 +506,25 @@ fi
 
 # Function: fix /etc/at.deny ownership and permissions
 7356_fix_at_deny() {
-    local dir="/etc/at.deny"
+    local file="/etc/at.deny"
 
     # Backup current state
     7356_scan_at_deny
 
     # Apply CIS recommended ownership and permissions
-    #chown root:root "$dir"
-    chmod 600 "$dir"
+    #chown root:root "$file"
+    chmod 600 "$file"
 
-    echo "$(date '+%F %T') - Fixed $dir (owner:root, group:root, permissions:700)" >> "$GLOBLOGFILE"
+    echo "$(date '+%F %T') - Fixed $file (owner:root, group:root, permissions:700)"
 }
 
 # Function: restore /etc/at.deny from backup
 7356_restore_at_deny() {
-    local dir="/etc/at.deny"
+    local file="/etc/at.deny"
     local backup_file="$ENVDIR/7356_at.deny_$RESTOREDATE.bck"
 
     # Check backup exists
     if [ ! -f "$backup_file" ]; then
-        echo "ERROR: Backup file not found: $backup_file" >> "$GLOBLOGFILE"
         echo "ERROR: Backup file not found: $backup_file"
         return 1
     fi
@@ -568,20 +540,18 @@ fi
 
     # Validate values
     if [[ -z "$owner" || -z "$group" || -z "$perms" ]]; then
-        echo "ERROR: Invalid backup file format: $backup_file" >> "$GLOBLOGFILE"
         echo "ERROR: Invalid backup file format: $backup_file"
         return 1
     fi
 
     # Apply restored values
-    #chown "$owner:$group" "$dir"
-    if ! chmod "$perms" "$dir"; then
-        echo "ERROR: Failed to apply permissions '$perms' to $dir" >> "$GLOBLOGFILE"
-        echo "ERROR: Failed to apply permissions '$perms' to $dir"
+    #chown "$owner:$group" "$file"
+    if ! chmod "$perms" "$file"; then
+        echo "ERROR: Failed to apply permissions '$perms' to $file"
         return 1
     fi
 
-    echo "$(date '+%F %T') - Restored $dir from backup $backup_file (owner:$owner, group:$group, permissions:$perms)" >> "$GLOBLOGFILE"
+    echo "$(date '+%F %T') - Restored $file from backup $backup_file (owner:$owner, group:$group, permissions:$perms)"
 }
 
 
@@ -595,7 +565,6 @@ fi
     local BCKLOGFILE="$ENVDIR/9978_cups_$DATE.bck"
 
     if ! touch "$BCKLOGFILE" 2>/dev/null; then
-        echo "ERROR: Cannot write backup file: $BCKLOGFILE" >> "$GLOBLOGFILE"
         echo "ERROR: Cannot write backup file: $BCKLOGFILE"
         return 1
     fi
@@ -614,35 +583,30 @@ fi
 9978_fix_cups_service() {
     local service="cups.service"
 
+    # Backup current state
     9978_scan_cups_service
 
     # If masked → unmask it first
     if systemctl is-enabled "$service" 2>/dev/null | grep -q "masked"; then
         if systemctl unmask "$service" &>/dev/null; then
-            echo "$(date '+%F %T') - Unmasked $service" >> "$GLOBLOGFILE"
             echo "$(date '+%F %T') - Unmasked $service"
         else
-            echo "$(date '+%F %T') - ERROR: Failed to unmask $service" >> "$GLOBLOGFILE"
             echo "$(date '+%F %T') - ERROR: Failed to unmask $service"
         fi
     fi
 
     # Disable service
     if systemctl disable "$service" &>/dev/null; then
-        echo "$(date '+%F %T') - Disabled $service" >> "$GLOBLOGFILE"
         echo "$(date '+%F %T') - Disabled $service"
 
     else
-        echo "$(date '+%F %T') - ERROR: Failed to disable $service" >> "$GLOBLOGFILE"
         echo "$(date '+%F %T') - ERROR: Failed to disable $service"
     fi
 
     # Stop service
     if systemctl stop "$service" &>/dev/null; then
-        echo "$(date '+%F %T') - Stopped $service" >> "$GLOBLOGFILE"
         echo "$(date '+%F %T') - Stopped $service"
     else
-        echo "$(date '+%F %T') - ERROR: Failed to stop $service" >> "$GLOBLOGFILE"
         echo "$(date '+%F %T') - ERROR: Failed to stop $service"
     fi
 }
@@ -653,10 +617,12 @@ fi
     local backup_file="$ENVDIR/9978_cups_$RESTOREDATE.bck"
 
     if [ ! -f "$backup_file" ]; then
-        echo "ERROR: Backup file not found: $backup_file" >> "$GLOBLOGFILE"
         echo "ERROR: Backup file not found: $backup_file"
         return 1
     fi
+
+    # Backup current state
+    9978_scan_cups_service
 
     local enabled active
     enabled=$(grep "Enabled" "$backup_file" | awk -F ':' '{print $2}' | xargs)
@@ -667,7 +633,7 @@ fi
         systemctl stop "$service" &>/dev/null
         systemctl disable "$service" &>/dev/null
         systemctl mask "$service" &>/dev/null
-        echo "$(date '+%F %T') - Restored $service (masked)" >> "$GLOBLOGFILE"
+        echo "$(date '+%F %T') - Restored $service (masked)"
         return 0
     fi
 
@@ -687,7 +653,7 @@ fi
         systemctl stop "$service" &>/dev/null
     fi
 
-    echo "$(date '+%F %T') - Restored $service state from backup $backup_file (Enabled: $enabled, Active: $active)" >> "$GLOBLOGFILE"
+    echo "$(date '+%F %T') - Restored $service state from backup $backup_file (Enabled: $enabled, Active: $active)"
 }
 
 #----------------------------------------------------------------------------------------------
@@ -702,12 +668,10 @@ fi
 
     if ! touch "$BCKLOGFILE" 2>/dev/null; then
         echo "ERROR: Cannot write backup file: $BCKLOGFILE"
-        echo "ERROR: Cannot write backup file: $BCKLOGFILE" >> "$GLOBLOGFILE"
         return 1
     fi
 
     if [ ! -f "$file" ]; then
-        echo "$(date '+%F %T') - ERROR: $file does not exist" >> "$GLOBLOGFILE"
         echo "$(date '+%F %T') - ERROR: $file does not exist" 
         return 1
     fi
@@ -731,7 +695,7 @@ fi
 
     if [ "$current_tmout" = "$correct_tmout" ] && [ "$current_export" = "$correct_export" ]; then
         # Already correct, do nothing
-        echo "$(date '+%F %T') - $file already has correct TMOUT and export" >> "$GLOBLOGFILE"
+        echo "$(date '+%F %T') - $file already has correct TMOUT and export"
     else
         # Remove any existing TMOUT lines or export
         sed -i '/TMOUT/d' "$file"
@@ -742,7 +706,7 @@ fi
             echo "$correct_export"
         } >> "$file"
 
-        echo "$(date '+%F %T') - Fixed $file: TMOUT set to 600 with readonly and export" >> "$GLOBLOGFILE"
+        echo "$(date '+%F %T') - Fixed $file: TMOUT set to 600 with readonly and export"
     fi
 }
 
@@ -752,17 +716,19 @@ fi
     local backup_file="$ENVDIR/13376_profile.d_timeout.sh_$RESTOREDATE.bck"
 
     if [ ! -f "$backup_file" ]; then
-        echo "ERROR: Backup file not found: $backup_file" >> "$GLOBLOGFILE"
         echo "ERROR: Backup file not found: $backup_file"
         return 1
     fi
 
+    # Backup current state
+    13376_scan_profile_d_timeout_sh
+
     # Restore entire file from backup
     cp "$backup_file" "$file"
     if [ $? -eq 0 ]; then
-        echo "$(date '+%F %T') - Restored $file from backup $backup_file" >> "$GLOBLOGFILE"
+        echo "$(date '+%F %T') - Restored $file from backup $backup_file"
     else
-        echo "$(date '+%F %T') - ERROR: Failed to restore $file from backup $backup_file" >> "$GLOBLOGFILE"
+        echo "$(date '+%F %T') - ERROR: Failed to restore $file from backup $backup_file"
         echo "ERROR: Failed to restore $file from backup $backup_file"
         return 1
     fi
@@ -779,7 +745,6 @@ fi
 
     # Create backup file
     if ! touch "$BCKLOGFILE" 2>/dev/null; then
-        echo "ERROR: Cannot write backup file: $BCKLOGFILE" >> "$GLOBLOGFILE"
         echo "ERROR: Cannot write backup file: $BCKLOGFILE"
         return 1
     fi
@@ -803,18 +768,18 @@ fi
 
 # Function: fix (remove) gdm package and its dependencies
 11327_fix_gdm_package() {
-    # Run scan first
+
+    # Backup current state
     11327_scan_gdm_package
 
-    echo "$(date '+%F %T') - Removing gdm package and dependencies..." >> "$GLOBLOGFILE"
+    echo "$(date '+%F %T') - Removing gdm package and dependencies..."
 
     if ! zypper --non-interactive remove gdm; then
-        echo "ERROR: Failed to remove gdm package" >> "$GLOBLOGFILE"
         echo "ERROR: Failed to remove gdm package"
         return 1
     fi
 
-    echo "$(date '+%F %T') - Successfully removed gdm package" >> "$GLOBLOGFILE"
+    echo "$(date '+%F %T') - Successfully removed gdm package"
 }
 
 
@@ -825,31 +790,31 @@ fi
 
     # Check backup file
     if [[ ! -f "$backup_file" ]]; then
-        echo "ERROR: Backup file not found: $backup_file" >> "$GLOBLOGFILE"
         echo "ERROR: Backup file not found: $backup_file"
         return 1
     fi
+
+    # Backup current state
+    11327_scan_gdm_package
 
     # Load packages from backup
     local PACKAGES
     PACKAGES=$(grep -A100 "Packages to be removed:" "$backup_file" | tail -n +2)
 
     if [[ -z "$PACKAGES" ]]; then
-        echo "ERROR: Backup file contains no package list: $backup_file" >> "$GLOBLOGFILE"
         echo "ERROR: Backup file contains no package list: $backup_file"
         return 1
     fi
 
-    echo "$(date '+%F %T') - Restoring packages:" >> "$GLOBLOGFILE"
+    echo "$(date '+%F %T') - Restoring packages:"
     echo "$PACKAGES" >> "$GLOBLOGFILE"
 
     if ! zypper --non-interactive install $PACKAGES; then
-        echo "ERROR: Failed to restore packages from backup" >> "$GLOBLOGFILE"
         echo "ERROR: Failed to restore packages from backup"
         return 1
     fi
 
-    echo "$(date '+%F %T') - Successfully restored packages from $backup_file" >> "$GLOBLOGFILE"
+    echo "$(date '+%F %T') - Successfully restored packages from $backup_file"
 }
 
 
@@ -945,4 +910,3 @@ done
 #sed -i '/^$/d' "$GLOBLOGFILE"
 
 exit 0
-

@@ -104,6 +104,9 @@ fi
         return 1
     fi
 
+    # Backup current state
+    7343_scan_cron_hourly 
+
     # Restore ownership and permissions from backup
     local perms owner group
     owner=$(grep "Owner" "$backup_file" | awk -F ':' '{print $2}'|xargs)
@@ -195,6 +198,9 @@ fi
         return 1
     fi
 
+    # Backup current state
+    7341_scan_cron_daily
+
     # Restore ownership and permissions from backup
     local perms owner group
     owner=$(grep "Owner" "$backup_file" | awk -F ':' '{print $2}'|xargs)
@@ -282,6 +288,9 @@ fi
         return 1
     fi
 
+    # Backup current state
+    7345_scan_cron_weekly
+
     # Restore ownership and permissions from backup
     local perms owner group
     owner=$(grep "Owner" "$backup_file" | awk -F ':' '{print $2}'|xargs)
@@ -367,6 +376,9 @@ fi
         echo "ERROR: Backup file not found: $backup_file"
         return 1
     fi
+
+    # Backup current state
+    7347_scan_cron_monthly
 
     # Restore ownership and permissions from backup
     local perms owner group
@@ -455,6 +467,9 @@ fi
         return 1
     fi
 
+    # Backup current state
+    7339_scan_cron_d
+
     # Restore ownership and permissions from backup
     local perms owner group
     owner=$(grep "Owner" "$backup_file" | awk -F ':' '{print $2}'|xargs)
@@ -541,6 +556,9 @@ fi
         echo "ERROR: Backup file not found: $backup_file"
         return 1
     fi
+
+    # Backup current state
+    7356_scan_at_deny
 
     # Restore ownership and permissions from backup
     local perms owner group

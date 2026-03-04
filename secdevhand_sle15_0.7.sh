@@ -19,11 +19,6 @@
 # Timestamp is global it's created for whole list <-i> and can be used for whole <-i> list during restore.
 # Global log file is in $GLOBLOGFILE
 # Backup files are created in $ENVDIR
-# Changes:
-#
-# Buggy    [7513]="sysctl_rp_filter"
-# Buggy    [12785]="sysctl_suid_dumpable"
-# Fixed    [10492]="sysctl_disable_ipv6"
 #---------------------------------------------------------------------------------------------------------
 
 #Set enviroment and variable
